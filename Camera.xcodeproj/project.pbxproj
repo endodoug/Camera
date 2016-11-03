@@ -12,6 +12,7 @@
 		B772A4A21DCBB57F00DA7471 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B772A4A01DCBB57F00DA7471 /* Main.storyboard */; };
 		B772A4A41DCBB57F00DA7471 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B772A4A31DCBB57F00DA7471 /* Assets.xcassets */; };
 		B772A4A71DCBB57F00DA7471 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B772A4A51DCBB57F00DA7471 /* LaunchScreen.storyboard */; };
+		B772A4AF1DCBF1E000DA7471 /* QuickLookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772A4AE1DCBF1E000DA7471 /* QuickLookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B772A4A31DCBB57F00DA7471 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B772A4A61DCBB57F00DA7471 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B772A4A81DCBB57F00DA7471 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B772A4AE1DCBF1E000DA7471 /* QuickLookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickLookViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				B772A49C1DCBB57F00DA7471 /* AppDelegate.swift */,
 				B772A49E1DCBB57F00DA7471 /* ViewController.swift */,
 				B772A4A01DCBB57F00DA7471 /* Main.storyboard */,
+				B772A4AE1DCBF1E000DA7471 /* QuickLookViewController.swift */,
 				B772A4A31DCBB57F00DA7471 /* Assets.xcassets */,
 				B772A4A51DCBB57F00DA7471 /* LaunchScreen.storyboard */,
 				B772A4A81DCBB57F00DA7471 /* Info.plist */,
@@ -139,6 +142,7 @@
 			files = (
 				B772A49F1DCBB57F00DA7471 /* ViewController.swift in Sources */,
 				B772A49D1DCBB57F00DA7471 /* AppDelegate.swift in Sources */,
+				B772A4AF1DCBF1E000DA7471 /* QuickLookViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

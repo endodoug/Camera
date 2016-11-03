@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,23 +25,42 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXc-wB-JsZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCk-co-UNs">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lS7-58-dp2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCk-co-UNs" userLabel="Flash Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="3uK-lJ-2na"/>
+                                                    <constraint firstAttribute="width" constant="56" id="l92-79-LlF"/>
+                                                </constraints>
+                                                <state key="normal" image="Flash_Icon"/>
+                                                <connections>
+                                                    <action selector="setFlashMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ea1-oc-jU0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI1-QC-q8b" userLabel="Camera Switch Button">
+                                                <rect key="frame" x="317" y="0.0" width="58" height="46"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="K2A-Og-Yaa"/>
+                                                    <constraint firstAttribute="width" constant="58" id="SKU-1V-1gx"/>
+                                                </constraints>
+                                                <state key="normal" image="Camera_Icon"/>
+                                                <connections>
+                                                    <action selector="switchCameras:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AEh-uy-Fsi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="IHK-Uk-AYn"/>
-                                            <constraint firstAttribute="height" constant="48" id="JYT-PD-wR6"/>
+                                            <constraint firstItem="nCk-co-UNs" firstAttribute="leading" secondItem="lS7-58-dp2" secondAttribute="leading" id="0Mm-wl-CG0"/>
+                                            <constraint firstAttribute="height" constant="48" id="11N-7B-rW4"/>
+                                            <constraint firstItem="nCk-co-UNs" firstAttribute="top" secondItem="lS7-58-dp2" secondAttribute="top" id="3pC-MG-GtN"/>
+                                            <constraint firstItem="TI1-QC-q8b" firstAttribute="top" secondItem="lS7-58-dp2" secondAttribute="top" id="FNS-3d-ckR"/>
+                                            <constraint firstAttribute="trailing" secondItem="TI1-QC-q8b" secondAttribute="trailing" id="v1H-Rj-Dwf"/>
                                         </constraints>
-                                        <state key="normal" image="Flash_Icon"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI1-QC-q8b">
-                                        <rect key="frame" x="317" y="0.0" width="58" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="evu-k0-BjW"/>
-                                            <constraint firstAttribute="width" constant="58" id="u3L-BK-2yR"/>
-                                        </constraints>
-                                        <state key="normal" image="Camera_Icon"/>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akR-4d-8Tg">
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akR-4d-8Tg" userLabel="Bottom Controls">
                                         <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mt5-Jy-YTB" userLabel="thumbnail">
@@ -49,14 +69,23 @@
                                                     <constraint firstAttribute="height" constant="45" id="bI8-cR-ojJ"/>
                                                     <constraint firstAttribute="width" constant="45" id="wYn-Ol-f4y"/>
                                                 </constraints>
+                                                <connections>
+                                                    <segue destination="WH3-15-yvR" kind="show" identifier="QuickLookSegue" id="qhj-S3-40R">
+                                                        <segue key="commit" inheritsFrom="parent" id="41U-Ev-nak"/>
+                                                        <segue key="preview" inheritsFrom="commit" id="tLD-H4-c88"/>
+                                                    </segue>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwP-Gl-0wx">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwP-Gl-0wx" userLabel="Capture Photo Button">
                                                 <rect key="frame" x="148" y="10" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="ETE-Ci-uzN"/>
                                                     <constraint firstAttribute="width" constant="80" id="Gj5-7l-Y61"/>
                                                 </constraints>
                                                 <state key="normal" image="Capture_Butt"/>
+                                                <connections>
+                                                    <action selector="capturePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FDc-dg-kbk"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,13 +100,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="nCk-co-UNs" firstAttribute="top" secondItem="JXc-wB-JsZ" secondAttribute="top" id="AV4-1x-Hfo"/>
+                                    <constraint firstItem="lS7-58-dp2" firstAttribute="leading" secondItem="JXc-wB-JsZ" secondAttribute="leading" id="Dj1-xp-7vd"/>
                                     <constraint firstAttribute="trailing" secondItem="akR-4d-8Tg" secondAttribute="trailing" id="Jf4-P5-wPD"/>
-                                    <constraint firstItem="nCk-co-UNs" firstAttribute="leading" secondItem="JXc-wB-JsZ" secondAttribute="leading" id="QHn-1A-Tkw"/>
+                                    <constraint firstItem="lS7-58-dp2" firstAttribute="top" secondItem="JXc-wB-JsZ" secondAttribute="top" id="S0C-mJ-2y2"/>
                                     <constraint firstItem="akR-4d-8Tg" firstAttribute="leading" secondItem="JXc-wB-JsZ" secondAttribute="leading" id="VCw-oX-2NX"/>
-                                    <constraint firstAttribute="trailing" secondItem="TI1-QC-q8b" secondAttribute="trailing" id="fVG-Q8-gFB"/>
+                                    <constraint firstAttribute="trailing" secondItem="lS7-58-dp2" secondAttribute="trailing" id="s26-Q1-0Mr"/>
                                     <constraint firstAttribute="bottom" secondItem="akR-4d-8Tg" secondAttribute="bottom" id="vtN-9d-gYu"/>
-                                    <constraint firstItem="TI1-QC-q8b" firstAttribute="top" secondItem="JXc-wB-JsZ" secondAttribute="top" id="zWP-0A-5cT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -89,10 +117,43 @@
                             <constraint firstItem="JXc-wB-JsZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ebR-dp-uMM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraPreview" destination="JXc-wB-JsZ" id="VaG-XA-ARD"/>
+                        <outlet property="thumbnailButton" destination="Mt5-Jy-YTB" id="DwE-SO-nP7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="207.19999999999999" y="120.08995502248877"/>
+        </scene>
+        <!--Quick Look View Controller-->
+        <scene sceneID="OkJ-0b-ZmU">
+            <objects>
+                <viewController id="WH3-15-yvR" customClass="QuickLookViewController" customModule="Camera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pTa-l0-np6"/>
+                        <viewControllerLayoutGuide type="bottom" id="76z-ro-r9M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="USP-5c-5R4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="czn-GZ-wf2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="76z-ro-r9M" firstAttribute="top" secondItem="czn-GZ-wf2" secondAttribute="bottom" id="8eN-3r-yc4"/>
+                            <constraint firstItem="czn-GZ-wf2" firstAttribute="top" secondItem="pTa-l0-np6" secondAttribute="bottom" constant="-20" id="UjQ-To-EmH"/>
+                            <constraint firstAttribute="trailing" secondItem="czn-GZ-wf2" secondAttribute="trailing" id="gsj-yL-dc4"/>
+                            <constraint firstItem="czn-GZ-wf2" firstAttribute="leading" secondItem="USP-5c-5R4" secondAttribute="leading" id="p3m-O2-AQ8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2uC-qh-oCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="119.1904047976012"/>
         </scene>
     </scenes>
     <resources>
@@ -100,4 +161,7 @@
         <image name="Capture_Butt" width="80" height="80"/>
         <image name="Flash_Icon" width="13" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qhj-S3-40R"/>
+    </inferredMetricsTieBreakers>
 </document>

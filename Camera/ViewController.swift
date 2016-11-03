@@ -25,14 +25,42 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  // MARK: - Set Flash
   @IBAction func setFlashMode(_ sender: Any) {
   }
 
+  // MARK: - Switch Cameras
   @IBAction func switchCameras(_ sender: UIButton) {
   }
   
+  // MARK: - Capture Photo
   @IBAction func capturePhoto(_ sender: UIButton) {
   }
+  
+  // MARK: - Helpers
+  func savePhotoToLibrary(image: UIImage) {
+    let photoLibrary = PHPhotoLibrary.shared()
+    photoLibrary.performChanges({
+      PHAssetChangeRequest.creationRequestForAsset(from: image)
+    }) { (success: Bool, error: Error?) -> Void in
+      if success {
+        // Set thumbnail
+        self.setPhotoThumbnail(image: image)
+      } else {
+        print("Error writing to photo library: \(error!.localizedDescription)")
+      }
+    }
+  }
+  
+  func setPhotoThumbnail(image: UIImage) {
+    DispatchQueue.main.async() { () -> Void in
+      self.thumbnailButton.setBackgroundImage(image, for: UIControlState.normal)
+      self.thumbnailButton.layer.borderColor = UIColor.white.cgColor
+      self.thumbnailButton.layer.borderWidth = 1.0
+    }
+  }
+
+
   
 }
 

@@ -11,7 +11,7 @@ import AVFoundation
 import Photos
 
 class ViewController: UIViewController {
-
+  
   @IBOutlet weak var cameraPreview: UIView!
   @IBOutlet weak var thumbnailButton: UIButton!
   
@@ -20,9 +20,7 @@ class ViewController: UIViewController {
   var activeInput: AVCaptureDeviceInput!
   let imageOutput = AVCapturePhotoOutput()
   
-  let videoQueue = DispatchQueue(label: "com.altutraining.worker", qos: .userInitiated)
-  
-  
+  let videoQueue = DispatchQueue(label: "com.doug-harper.video", qos: .userInitiated)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +32,7 @@ class ViewController: UIViewController {
     
     
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -85,11 +83,11 @@ class ViewController: UIViewController {
       }
     }
   }
-
+  
   // MARK: - Set Flash
   @IBAction func setFlashMode(_ sender: Any) {
   }
-
+  
   // MARK: - Switch Cameras
   @IBAction func switchCameras(_ sender: UIButton) {
   }
@@ -120,6 +118,6 @@ class ViewController: UIViewController {
       self.thumbnailButton.layer.borderWidth = 1.0
     }
   }
-
+  
 }
 

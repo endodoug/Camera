@@ -15,6 +15,13 @@ class ViewController: UIViewController {
   @IBOutlet weak var cameraPreview: UIView!
   @IBOutlet weak var thumbnailButton: UIButton!
   
+  let captureSession = AVCaptureSession()
+  var previewLayer: AVCaptureVideoPreviewLayer!
+  var activeInput: AVCaptureDeviceInput!
+  let imageOutput = AVCapturePhotoOutput()
+  
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -23,6 +30,36 @@ class ViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - Setup Capture Session & Preview
+  func setupCaptureSession() {
+    // TODO: check this preset - could be High instead of Photo
+    captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+    let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    
+    do {
+      let input = try AVCaptureDeviceInput(device: camera)
+      if captureSession.canAddInput(input) {
+        captureSession.addInput(input)
+        activeInput = input
+      }
+    } catch {
+      print("Error setting up device input: \(error.localizedDescription)")
+    }
+    // TODO: Check on this one!
+    imageOutput.isHighResolutionCaptureEnabled = true
+    
+    if captureSession.canAddOutput(imageOutput) {
+      captureSession.addOutput(imageOutput)
+    }
+  }
+  
+  func setUpPreview() {
+    previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+    previewLayer.frame = cameraPreview.bounds
+    previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+    cameraPreview.layer.addSublayer(previewLayer)
   }
 
   // MARK: - Set Flash
@@ -60,7 +97,5 @@ class ViewController: UIViewController {
     }
   }
 
-
-  
 }
 

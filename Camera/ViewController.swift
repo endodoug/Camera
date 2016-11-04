@@ -20,11 +20,19 @@ class ViewController: UIViewController {
   var activeInput: AVCaptureDeviceInput!
   let imageOutput = AVCapturePhotoOutput()
   
+  let videoQueue = DispatchQueue(label: "com.altutraining.worker", qos: .userInitiated)
+  
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    setupCaptureSession()
+    setUpPreview()
+    startSession()
+    
+    
   }
 
   override func didReceiveMemoryWarning() {
@@ -60,6 +68,22 @@ class ViewController: UIViewController {
     previewLayer.frame = cameraPreview.bounds
     previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
     cameraPreview.layer.addSublayer(previewLayer)
+  }
+  
+  func startSession() {
+    if !captureSession.isRunning {
+      videoQueue.async {
+        self.captureSession.startRunning()
+      }
+    }
+  }
+  
+  func stopRunning() {
+    if captureSession.isRunning {
+      videoQueue.async {
+        self.captureSession.stopRunning()
+      }
+    }
   }
 
   // MARK: - Set Flash

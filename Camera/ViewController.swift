@@ -29,8 +29,6 @@ class ViewController: UIViewController {
     setupCaptureSession()
     setUpPreview()
     startSession()
-    
-    
   }
   
   override func didReceiveMemoryWarning() {
@@ -68,11 +66,6 @@ class ViewController: UIViewController {
     cameraPreview.layer.addSublayer(previewLayer)
   }
   
-  private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
-    layer.videoOrientation = orientation
-    previewLayer.frame = self.view.bounds
-  }
-  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     
@@ -95,6 +88,11 @@ class ViewController: UIViewController {
         }
       }
     }
+  }
+  
+  private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
+    layer.videoOrientation = orientation
+    previewLayer.frame = self.view.bounds
   }
   
   func startSession() {
@@ -123,6 +121,19 @@ class ViewController: UIViewController {
   
   // MARK: - Capture Photo
   @IBAction func capturePhoto(_ sender: UIButton) {
+    //let connection = imageOutput.connection(withMediaType: AVMediaTypeVideo)
+    //if (connection?.isVideoOrientationSupported)! {
+    //connection?.videoOrientation = currentVideoOrientation()
+    if captureSession.canAddOutput(imageOutput) {
+      captureSession.addOutput(imageOutput)
+      
+      imageOutput.isHighResolutionCaptureEnabled = true
+    } else {
+      print("unable to add photo output")
+    }
+    
+    captureSession.commitConfiguration()
+    
   }
   
   // MARK: - Helpers
@@ -147,6 +158,24 @@ class ViewController: UIViewController {
       self.thumbnailButton.layer.borderWidth = 1.0
     }
   }
+  
+  func currentVideoOrientation() -> AVCaptureVideoOrientation {
+    var orientation: AVCaptureVideoOrientation
+    
+    switch UIDevice.current.orientation {
+    case .portrait:
+      orientation = AVCaptureVideoOrientation.portrait
+    case .landscapeRight:
+      orientation = AVCaptureVideoOrientation.landscapeLeft
+    case .portraitUpsideDown:
+      orientation = AVCaptureVideoOrientation.portraitUpsideDown
+    default:
+      orientation = AVCaptureVideoOrientation.landscapeRight
+    }
+    
+    return orientation
+  }
+  
   
 }
 
